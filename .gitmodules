@@ -1,0 +1,3 @@
+[submodule "Assets/packages/Unity-Standard-Assets"]
+	path = Assets/packages/Unity-Standard-Assets
+	url = https://github.com/jamschutz/Unity-Standard-Assets.git
