@@ -11,6 +11,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float detectionDistance = 20f;
 
     void Update() {
+        if (!FindTarget()) {
+            return;
+        }
         Pathfinding();
         Move();
     }
@@ -54,5 +57,15 @@ public class EnemyMovement : MonoBehaviour
         } else {
             transform.Rotate(raycastOffset * 5f * Time.deltaTime);
         }
+    }
+
+    bool FindTarget() {
+        if (target == null) {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        if (target == null) return false;
+
+        return true;
     }
 }

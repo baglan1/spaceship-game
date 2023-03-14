@@ -10,6 +10,9 @@ public class EnemyAttack : MonoBehaviour
     Vector3 hitPosition;
 
     void Update() {
+        if (!FindTarget())
+            return;
+
         if (InFront() && HaveInLineSight()) {
             FireLaser();
         }
@@ -43,5 +46,15 @@ public class EnemyAttack : MonoBehaviour
 
     void FireLaser() {
         laser.FireLaser(hitPosition, target);
+    }
+
+    bool FindTarget() {
+        if (target == null) {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        if (target == null) return false;
+
+        return true;
     }
 }
