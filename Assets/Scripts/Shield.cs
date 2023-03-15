@@ -28,5 +28,9 @@ public class Shield : MonoBehaviour
 
     public void TakeDamage(int damage = 1) {
         currentHealth -= damage;
+
+        if (currentHealth < 0) currentHealth = 0;
+
+        EventManager.TakeDamage(currentHealth / (float)maxHealth);
     }
 }

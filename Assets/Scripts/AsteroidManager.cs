@@ -13,10 +13,12 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField]
     float gridSpacing = 10f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        PlaceAsteroids();
+    void OnEnable() {
+        EventManager.OnStartGame += PlaceAsteroids;
+    }
+
+    void OnDisable() {
+        EventManager.OnStartGame -= PlaceAsteroids;
     }
 
     void PlaceAsteroids() {
