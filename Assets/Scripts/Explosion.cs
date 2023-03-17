@@ -6,6 +6,7 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     [SerializeField] GameObject explosion;
+    [SerializeField] GameObject blowUpPrefab;
     [SerializeField] Rigidbody rigidBody;
     [SerializeField] float hitModifier = 5f;
     [SerializeField] Shield shield;
@@ -31,5 +32,10 @@ public class Explosion : MonoBehaviour
 
         Vector3 direction = hitSource.position - hitPosition;
         rigidBody.AddForceAtPosition(direction.normalized * hitModifier, hitPosition, ForceMode.Impulse);
+    }
+
+    public void BlowUp() {
+        Instantiate(blowUpPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

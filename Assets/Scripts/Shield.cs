@@ -24,6 +24,8 @@ public class Shield : MonoBehaviour
         if (currentHealth > maxHealth) {
             currentHealth = maxHealth;
         }
+
+        EventManager.TakeDamage(currentHealth / (float)maxHealth);
     }
 
     public void TakeDamage(int damage = 1) {
@@ -32,5 +34,8 @@ public class Shield : MonoBehaviour
         if (currentHealth < 0) currentHealth = 0;
 
         EventManager.TakeDamage(currentHealth / (float)maxHealth);
+
+        if (currentHealth < 1)
+            GetComponent<Explosion>().BlowUp();
     }
 }

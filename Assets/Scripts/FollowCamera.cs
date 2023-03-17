@@ -7,7 +7,6 @@ public class FollowCamera : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] Vector3 distance = new Vector3(0f, 2f, -10f);
     [SerializeField] float distanceDamp = 10f;
-    [SerializeField] float rotationDamp = 10f;
 
     Transform _transform;
     Vector3 velocity = Vector3.one;
@@ -17,6 +16,9 @@ public class FollowCamera : MonoBehaviour
     }
 
     void Update() {
+        if (!FindTarget())
+            return;
+
         SmoothFollow();
     }
 
@@ -26,5 +28,18 @@ public class FollowCamera : MonoBehaviour
         _transform.position = currentPos;
 
         _transform.LookAt(target, target.up);
+    }
+
+    bool FindTarget() {
+        if (target == null) {
+            var playerGo = GameObject.FindGameObjectWithTag("Player");
+
+            if (playerGo != null)
+                target = playerGo.transform;
+        }
+
+        if (target == null) return false;
+
+        return true;
     }
 }
