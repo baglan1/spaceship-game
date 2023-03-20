@@ -803,7 +803,6 @@ MonoBehaviour:
   target: {fileID: 543450653490258692}
   distance: {x: 0, y: 2, z: -4}
   distanceDamp: 0.15
-  rotationDamp: 8
 --- !u!1 &985668474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,6 +1275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 3271933439611369083, guid: 392a46b39fef910428008ae9142c22b4, type: 3}
+  blowUpPrefab: {fileID: 100000, guid: 15ca5b8fa431dc04291a79cadcd19874, type: 3}
   rigidBody: {fileID: 543450653490258699}
   hitModifier: 10
   shield: {fileID: 543450653490258705}

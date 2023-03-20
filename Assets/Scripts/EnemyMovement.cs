@@ -10,6 +10,14 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float rayCastOffset = 2.5f;
     [SerializeField] float detectionDistance = 20f;
 
+    void OnEnable() {
+        EventManager.OnPlayerDeath += FindMainCamera;
+    }
+
+    void OnDisable() {
+        EventManager.OnPlayerDeath -= FindMainCamera;
+    }
+
     void Update() {
         if (!FindTarget()) {
             return;
@@ -70,5 +78,9 @@ public class EnemyMovement : MonoBehaviour
         if (target == null) return false;
 
         return true;
+    }
+
+    void FindMainCamera() {
+        target = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 }

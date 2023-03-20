@@ -35,6 +35,8 @@ public class Explosion : MonoBehaviour
     }
 
     public void BlowUp() {
+        EventManager.PlayerDeath();
+
         Instantiate(blowUpPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
