@@ -3,26 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameUI : MonoBehaviour
-{
-    [SerializeField] GameObject playButtonGO;
+{   
+    [SerializeField] GameObject gameUI;
+    [SerializeField] GameObject mainMenu;
 
-    bool isDisplayed = true;
+    [SerializeField] GameObject playerPrefab;
+    [SerializeField] GameObject playerSpawnPosition;
+
+    void Start() {
+        ShowMainMenu();
+    }
 
     void OnEnable() {
-        EventManager.OnStartGame += HidePanel;
+        EventManager.OnStartGame += ShowGameUI;
+        EventManager.OnPlayerDeath += ShowMainMenu;
     }
 
     void OnDisable(){
-        EventManager.OnStartGame -= HidePanel;
+        EventManager.OnStartGame -= ShowGameUI;
+        EventManager.OnPlayerDeath -= ShowMainMenu;
     }
 
-    void HidePanel() {
-        isDisplayed = !isDisplayed;
-
-        playButtonGO.SetActive(isDisplayed);
+    void ShowMainMenu() {
+        mainMenu.SetActive(true);
+        gameUI.SetActive(false);
     }
 
-    public void PlayGame() {
-        EventManager.StartGame();
+    void ShowGameUI() {
+        mainMenu.SetActive(false);
+        gameUI.SetActive(true);
+
+        Instantiate(playerPrefab, playerSpawnPosition.transform.position, playerSpawnPosition.transform.rotation);
     }
 }

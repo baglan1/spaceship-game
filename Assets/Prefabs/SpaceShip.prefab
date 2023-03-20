@@ -79,9 +79,12 @@ GameObject:
   - component: {fileID: 7558637822864055445}
   - component: {fileID: 3747575473355860217}
   - component: {fileID: 3747575473239932004}
+  - component: {fileID: 543450653490258699}
+  - component: {fileID: 543450653490258693}
+  - component: {fileID: 543450653490258705}
   m_Layer: 0
   m_Name: SpaceShip
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +171,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5060444177187149915, guid: 44ef80c52cd185540bd7e9d6cc15ae18, type: 3}
 --- !u!114 &3747575473355860217
@@ -202,6 +205,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lasers:
   - {fileID: 7494004961679883159}
+--- !u!54 &543450653490258699
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090246857280931295}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 1
+  m_AngularDrag: 0.7
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &543450653490258693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090246857280931295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713ce7d4dba886f45bded38d9f70b9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 3271933439611369083, guid: 392a46b39fef910428008ae9142c22b4, type: 3}
+  blowUpPrefab: {fileID: 100000, guid: 15ca5b8fa431dc04291a79cadcd19874, type: 3}
+  rigidBody: {fileID: 543450653490258699}
+  hitModifier: 10
+  shield: {fileID: 543450653490258705}
+--- !u!114 &543450653490258705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090246857280931295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7acc11b701a69448246734e2338683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  regenerationRate: 2
+  regenerationAmount: 1
 --- !u!1001 &3747575474817772218
 PrefabInstance:
   m_ObjectHideFlags: 0
