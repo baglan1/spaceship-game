@@ -1031,6 +1031,7 @@ GameObject:
   - component: {fileID: 952774855}
   - component: {fileID: 952774859}
   - component: {fileID: 952774860}
+  - component: {fileID: 952774861}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1150,6 +1151,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerUI: {fileID: 1119165296}
+--- !u!114 &952774861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952774854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849ab840290957d4a8779bdff0855dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highScoreText: {fileID: 172075436}
+  currentScoreText: {fileID: 174320511}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,19 +6,21 @@ public class AsteroidManager : MonoBehaviour
 {
     [SerializeField]
     AsteroidController asteroidController;
-
     [SerializeField]
     int numOfAsteroidsOnAnAxis = 10;
-
     [SerializeField]
     float gridSpacing = 10f;
 
+    List<AsteroidController> asteroids = new List<AsteroidController>();
+
     void OnEnable() {
         EventManager.OnStartGame += PlaceAsteroids;
+        EventManager.OnPlayerDeath += DestroyAsteroids;
     }
 
     void OnDisable() {
         EventManager.OnStartGame -= PlaceAsteroids;
+        EventManager.OnPlayerDeath -= DestroyAsteroids;
     }
 
     void PlaceAsteroids() {
@@ -35,10 +37,17 @@ public class AsteroidManager : MonoBehaviour
         var asteroidPos = transform.position + new Vector3(x, y, z) * gridSpacing
             + new Vector3(AsteroidOffset(), AsteroidOffset(), AsteroidOffset());
 
-        Instantiate(asteroidController, asteroidPos, Quaternion.identity, transform);
+        var asteroid = Instantiate(asteroidController, asteroidPos, Quaternion.identity, transform);
+        asteroids.Add(asteroid);
     }
 
     float AsteroidOffset() {
         return Random.Range(-gridSpacing / 2f, gridSpacing / 2f);
+    }
+
+    void DestroyAsteroids() {
+        foreach (var ast in asteroids) {
+            ast.SelfDestruct();
+        }
     }
 }

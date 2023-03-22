@@ -16,17 +16,21 @@ public class GameUI : MonoBehaviour
 
     void OnEnable() {
         EventManager.OnStartGame += ShowGameUI;
-        EventManager.OnPlayerDeath += ShowMainMenu;
+        EventManager.OnPlayerDeath += DelayedShowMainMenu;
     }
 
     void OnDisable(){
         EventManager.OnStartGame -= ShowGameUI;
-        EventManager.OnPlayerDeath -= ShowMainMenu;
+        EventManager.OnPlayerDeath -= DelayedShowMainMenu;
     }
 
     void ShowMainMenu() {
         mainMenu.SetActive(true);
         gameUI.SetActive(false);
+    }
+
+    void DelayedShowMainMenu() {
+        Invoke("ShowMainMenu", AsteroidController.destructionDelay);
     }
 
     void ShowGameUI() {

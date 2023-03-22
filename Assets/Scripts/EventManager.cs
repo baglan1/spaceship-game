@@ -11,6 +11,9 @@ public class EventManager : MonoBehaviour
     public delegate void TakeDamageDelegate(float percentage);
     public static TakeDamageDelegate OnTakeDamage;
 
+    public delegate void ScorePointsDelegate(int amount);
+    public static ScorePointsDelegate OnScorePoints;
+
     public static void StartGame() {
         if (OnStartGame != null) {
             OnStartGame();
@@ -26,6 +29,12 @@ public class EventManager : MonoBehaviour
     public static void PlayerDeath() {
         if (OnPlayerDeath != null) {
             OnPlayerDeath();
+        }
+    }
+
+    public static void ScorePoints(int amount) {
+        if (OnScorePoints != null) {
+            OnScorePoints(amount);
         }
     }
 }

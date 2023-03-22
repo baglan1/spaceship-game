@@ -8,6 +8,7 @@ public class AsteroidController : MonoBehaviour
     [SerializeField] float maxScale;
     [SerializeField] float rotationOffset;
 
+    public static float destructionDelay = 1f;
     Transform _transform;
     Vector3 randomRotation;
 
@@ -34,5 +35,13 @@ public class AsteroidController : MonoBehaviour
         _transform.Rotate(randomRotation * Time.deltaTime);
     }
     
-    
+    public void SelfDestruct() {
+        var timer = Random.Range(0f, destructionDelay);
+
+        Invoke("GoBoom", timer);
+    }
+
+    void GoBoom() {
+        GetComponent<Explosion>().BlowUp();
+    }
 }
