@@ -534,6 +534,7 @@ MonoBehaviour:
   asteroidController: {fileID: 3879031128784756217, guid: bbcbe6194f791dc4da0cdee5f2b47fd5, type: 3}
   numOfAsteroidsOnAnAxis: 10
   gridSpacing: 10
+  pickUpPrefab: {fileID: 100000, guid: fdf643b7e57fb9f498ade64169c21613, type: 3}
 --- !u!4 &362184010
 Transform:
   m_ObjectHideFlags: 0

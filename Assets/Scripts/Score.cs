@@ -13,6 +13,7 @@ public class Score : MonoBehaviour
 
     void Start() {
         LoadHighScore();
+        DisplayCurrentScore();
     }
 
     void OnEnable() {
@@ -33,6 +34,7 @@ public class Score : MonoBehaviour
 
     void AddScore(int amount) {
         score += amount;
+        DisplayCurrentScore();
     }
 
     void LoadHighScore() {

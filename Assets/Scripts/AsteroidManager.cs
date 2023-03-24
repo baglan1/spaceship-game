@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
-    [SerializeField]
-    AsteroidController asteroidController;
-    [SerializeField]
-    int numOfAsteroidsOnAnAxis = 10;
-    [SerializeField]
-    float gridSpacing = 10f;
+    [SerializeField] AsteroidController asteroidController;
+    [SerializeField] int numOfAsteroidsOnAnAxis = 10;
+    [SerializeField] float gridSpacing = 10f;
+    [SerializeField] GameObject pickUpPrefab;
 
     List<AsteroidController> asteroids = new List<AsteroidController>();
 
     void OnEnable() {
         EventManager.OnStartGame += PlaceAsteroids;
         EventManager.OnPlayerDeath += DestroyAsteroids;
+        EventManager.OnSpawnPickUp += InstantiatePickUp;
     }
 
     void OnDisable() {
         EventManager.OnStartGame -= PlaceAsteroids;
         EventManager.OnPlayerDeath -= DestroyAsteroids;
+        EventManager.OnSpawnPickUp -= InstantiatePickUp;
     }
 
     void PlaceAsteroids() {
@@ -31,6 +31,8 @@ public class AsteroidManager : MonoBehaviour
                 }
             }
         }
+
+        InstantiatePickUp();
     }
 
     void InstantiateAsteroid(int x, int y, int z) {
@@ -39,6 +41,15 @@ public class AsteroidManager : MonoBehaviour
 
         var asteroid = Instantiate(asteroidController, asteroidPos, Quaternion.identity, transform);
         asteroids.Add(asteroid);
+    }
+
+    void InstantiatePickUp() {
+        var rnd = Random.Range(0, asteroids.Count);
+
+        Instantiate(pickUpPrefab, asteroids[rnd].transform.position, Quaternion.identity);
+
+        Destroy(asteroids[rnd].gameObject);
+        asteroids.RemoveAt(rnd);
     }
 
     float AsteroidOffset() {
